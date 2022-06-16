@@ -121,10 +121,10 @@ const typeDefs = gql`
       published: Int!
       genres: [String!]!
     ): Book
-  editAuthor(
-    name: String!
-    setBornTo: Int!
-  ): Author
+    editAuthor(
+      name: String!
+      setBornTo: Int!
+    ): Author
   }
 `
 
@@ -168,6 +168,7 @@ const resolvers = {
   Mutation: {
     addBook: (root, args) => {
       // if author is not in authors, add it
+      // console.log('args: ', args)
       if (!authors.some(e => e.name === args.author)) {
         const author = { name: args.author, id: uuid() }
         authors = authors.concat(author)
